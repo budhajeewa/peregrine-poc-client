@@ -14,18 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // return 149;
-    // $socket = fsockopen("host.docker.internal", 23);
-    // $socket = fsockopen("tls://host.docker.internal", 23, $en, $es, 30);
-    $context = stream_context_create(); 
-    $r = stream_context_set_option($context, 'ssl', 'local_cert', __DIR__.'/tls.crt'); 
-    $r = stream_context_set_option($context, 'ssl', 'local_pk', __DIR__.'/tls.key'); 
-    $socket = stream_socket_client("tls://host.docker.internal:23", $en, $es, 30, STREAM_CLIENT_CONNECT, $context); 
-    var_dump($en);
-    var_dump($es);
+    $socket = fsockopen("host.docker.internal", 23);
     if ($socket) {
-        echo "Connected!";
-        fwrite($socket, "logout t e s t rofl");
+        var_dump("Connected!");
+        fwrite($socket, "login t e s t");
         $result = fgets($socket);
         var_dump($result);
     } else {
