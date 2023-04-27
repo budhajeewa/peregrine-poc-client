@@ -16,3 +16,5 @@ RUN apk add --update make
 RUN apk add --update busybox-extras
 RUN apk add --update php-openssl
 RUN apk add --update nano
+RUN apk add --no-cache linux-headers
+RUN docker-php-ext-install sockets
